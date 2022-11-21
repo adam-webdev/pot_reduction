@@ -10,6 +10,7 @@
                 <div class="col-sm-6">
 
                   <select class="form-control mr-2" name="bulan">
+                    <option value="">-- Pilih bulan -- </option>
                     <?php
 
                     $b = mysqli_query($koneksi, "SELECT DISTINCT date_format(tanggal, '%M %Y') as month_year FROM data_pot order by tanggal desc");
@@ -28,6 +29,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-md-6">
         <div class="card-body">
@@ -59,11 +61,12 @@
                     FROM data_pot where day(tanggal) >= 1 and day(tanggal) <= 15 and date_format(tanggal, '%M %Y')='$bulan' order by tanggal asc");
                 }
               } else {
+
                 $bulan = date('F Y');
                 $q = mysqli_query($koneksi, " SELECT day(tanggal) as tanggal,cut_up,take_out,CBD,CSE,work_b,IOS,work_12,ACDD,baking,start_up,keterangan
                   FROM data_pot where day(tanggal) >= 1 and day(tanggal) <= 15 and date_format(tanggal, '%M %Y')='$bulan' order by tanggal asc");
               }
-
+              echo '<h3>Berikut data transaksi bulan ' . $bulan . ' </h3>';
               while ($pot = mysqli_fetch_array($q)) {
               ?>
               <tr>
@@ -124,7 +127,7 @@
                 $q = mysqli_query($koneksi, " SELECT day(tanggal) as tanggal,cut_up,take_out,CBD,CSE,work_b,IOS,work_12,ACDD,baking,start_up,keterangan
                   FROM data_pot where day(tanggal) >= 16 and day(tanggal) <= 31 and date_format(tanggal, '%M %Y')='$bulan' order by tanggal asc");
               }
-
+              echo '<h3>Berikut data transaksi bulan ' . $bulan . ' </h3>';
               while ($pot = mysqli_fetch_array($q)) {
               ?>
               <tr>
